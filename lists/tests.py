@@ -30,15 +30,16 @@ class HomePageTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/lists/list')
 
-    def test_displays_all_list_items(self):
+
+class ListViewTest(TestCase):
+
+    def test_displays_all_items(self):
         Item.objects.create(text='item 1')
         Item.objects.create(text='item 2')
 
-        response = self.client.get('/')
-
-        content = response.content.decode()
-        self.assertIn('item 1', content)
-        self.assertIn('item 2', content)
+        response = self.client.get('/lists/list/')
+        self.assertContains(response, 'item 1')
+        self.assertContains(response, 'item 2')
 
 
 class ItemModelTest(TestCase):
