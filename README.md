@@ -40,3 +40,7 @@ Everyone seems to be making one, so why not?
 >  `python manage.py runserver`
 > * For running tests:
 >  `python manage.py test`
+
+---
+
+Based on: https://www.obeythetestinggoat.com/
