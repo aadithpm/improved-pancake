@@ -50,18 +50,6 @@ jobs:
             . venv/bin/activate
             python manage.py test lists
 
-      - run:
-          name: run functional tests locally
-          command: |
-            . venv/bin/activate
-            python manage.py tests functional_tests
-
-      - run:
-          name: run functional tests on staging
-          command: |
-            . venv/bin/activate
-            python manage.py tests functional_tests STAGING_SITE=improved-pancake-tk-staging.herokuapp.com
-
       - store_artifacts:
           path: test-reports
           destination: test-reports
