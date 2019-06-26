@@ -1,0 +1,13 @@
+h1{
+    font-family: 'Space Mono', monospace;
+    font-size: 2.1em;
+    margin-bottom: 10%;
+}
+
+td, input{
+    font-family: 'Karla', sans-serif;
+}
+
+#submit_list_item{
+    margin-top: 5%;
+}
