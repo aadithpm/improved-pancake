@@ -34,19 +34,14 @@ jobs:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
       - run:
-          name: run unit tests
+          name: Run tests
           command: |
             . venv/bin/activate
-            python manage.py test lists
-
-          name: run selenium tests
-          command: |
-          . venv/bin/activate
-          python manage.py test functional_tests
-
+            python manage.py test
+          
       - store_test_results:
-          path: reports
+          path: reports/test_report.txt
 
       - store_artifacts:
           path: reports
-          destination: reports
+          destination: reports/test_artifacts.txt
