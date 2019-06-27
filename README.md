@@ -1,6 +1,6 @@
 # To-do list application in Django
 
-https://improved-pancake-tk.herokuapp.com
+https://improvedpancake.herokuapp.com/
 
 Everyone seems to be making one, so why not?
 
