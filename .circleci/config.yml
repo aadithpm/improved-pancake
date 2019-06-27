@@ -5,16 +5,16 @@ jobs:
       - run:
           name: unit tests
           command: |
-          . venv/bin/activate
-          python manage.py test lists
+            . venv/bin/activate
+            python manage.py test lists
   
   "functional-tests":
     steps:
       - run:
           name: functional tests
           command: |
-          .venv/bin/activate
-          python manage.py test functional_tests
+            . venv/bin/activate
+            python manage.py test functional_tests
 workflows:
   version: 2
   build:
