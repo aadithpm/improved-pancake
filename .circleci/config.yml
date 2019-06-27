@@ -50,13 +50,13 @@ workflows:
 
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-      jobs:
-        - "unit-tests"
-        - "functional-tests"
+    jobs:
+      - "unit-tests"
+      - "functional-tests"
 
-      - store_test_results:
-          path: reports
+    - store_test_results:
+        path: reports
 
-      - store_artifacts:
-          path: reports
-          destination: reports
+    - store_artifacts:
+        path: reports
+        destination: reports
