@@ -1,5 +1,22 @@
 version: 2
 jobs:
+  "unit-tests":
+    steps:
+      - run:
+          name: unit tests
+          command: |
+          . venv/bin/activate
+          python manage.py test lists
+  
+  "functional-tests":
+    steps:
+      - run:
+          name: functional tests
+          command: |
+          .venv/bin/activate
+          python manage.py test functional_tests
+workflows:
+  version: 2
   build:
     docker:
       - image: circleci/python:3.7.3-browsers
@@ -33,16 +50,9 @@ jobs:
 
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-      - run:
-          name: run unit tests
-          command: |
-            . venv/bin/activate
-            python manage.py test lists
-
-          name: run selenium tests
-          command: |
-          . venv/bin/activate
-          python manage.py test functional_tests
+      jobs:
+        - "unit-tests"
+        - "functional-tests"
 
       - store_test_results:
           path: reports
