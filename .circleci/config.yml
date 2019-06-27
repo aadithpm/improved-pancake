@@ -39,6 +39,11 @@ jobs:
             . venv/bin/activate
             python manage.py test lists
 
+          name: run selenium tests
+          command: |
+          . venv/bin/activate
+          python manage.py test functional_tests
+
       - store_test_results:
           path: reports
 
