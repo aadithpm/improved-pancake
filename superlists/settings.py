@@ -25,7 +25,7 @@ SECRET_KEY = '3=11oemtsp%x==e2e$_o&t2ha8$m@f5e*(qht*)$yyy-##%pa4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'improvedpancake.tk']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', '.improvedpancake.tk']
 
 
 # Application definition
