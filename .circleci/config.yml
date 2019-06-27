@@ -1,38 +1,5 @@
 version: 2
 jobs:
-  "unit-tests":
-    steps:
-      - run:
-          name: unit tests
-          command: |
-            . venv/bin/activate
-            python manage.py test lists
-
-      - store_test_results:
-          path: reports/tests.txt
-
-      - store_artifacts:
-          path: reports
-          destination: reports/tests_artifacts.txt
-
-  "functional-tests":
-    steps:
-      - run:
-          name: functional tests
-          command: |
-            . venv/bin/activate
-            python manage.py test functional_tests
-
-      - store_test_results:
-          path: reports/functional_tests.txt
-
-      - store_artifacts:
-          path: reports
-          destination: reports/functional_tests_artifacts.txt
-
-
-workflows:
-  version: 2
   build:
     docker:
       - image: circleci/python:3.7.3-browsers
@@ -66,6 +33,15 @@ workflows:
 
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
-  jobs:
-    - "unit-tests"
-    - "functional-tests"
+      - run:
+          name: run unit tests
+          command: |
+            . venv/bin/activate
+            python manage.py test
+          
+      - store_test_results:
+          path: reports
+
+      - store_artifacts:
+          path: reports
+          destination: reports
