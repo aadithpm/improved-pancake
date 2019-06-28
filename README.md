@@ -39,7 +39,7 @@ Everyone seems to be making one, so why not?
 
 
 > * For running the server:
->  `python manage.py runserver`
+>  `python manage.py runserver --settings=superlists.local_settings`
 > * For running tests:
 >  `python manage.py test`
 
