@@ -41,8 +41,9 @@ Everyone seems to be making one, so why not?
 > * For running the server:
 >  `python manage.py runserver --settings=superlists.local_settings`
 > * For running tests:
->  `python manage.py test`
+>  `python manage.py test --settings=superlists.local_settings`
 
+Make sure you're running this **inside** the `virtualenv`
 ---
 
 Based on: https://www.obeythetestinggoat.com/
