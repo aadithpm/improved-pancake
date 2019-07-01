@@ -44,6 +44,7 @@ Everyone seems to be making one, so why not?
 >  `python manage.py test --settings=superlists.local_settings`
 
 Make sure you're running this **inside** the `virtualenv`
+
 ---
 
 Based on: https://www.obeythetestinggoat.com/
