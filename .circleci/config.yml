@@ -13,13 +13,20 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-
+      - run:
+          sudo chown -R circleci:circleci /usr/local/bin
+      - run:
+          sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          key: installed-packages-{{ checksum "requirements.txt" }}
       - run:
           name: install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+
+            key: installed-packages-{{ checksum "requirements.txt" }}
 
       - run:
           name: Run unit tests
