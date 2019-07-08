@@ -20,6 +20,11 @@
                         <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" class="form-control"/>
                         <input name="submit" id="submit_list_item" type="submit" class="btn btn-outline-dark" value=">">
                         {% csrf_token %}
+                        {% if error %}
+                          <div class="form-group has-error">
+                            <span class="help-block">{{ error }}</span>
+                          </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
