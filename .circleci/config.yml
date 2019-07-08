@@ -13,10 +13,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-packages-{{ checksum "requirements.txt" }}
-            - v1-packages-
 
       - run:
           name: install dependencies
@@ -24,14 +20,6 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-
-      - save_cache:
-          paths:
-            - ./venv
-            - /usr/local/bin
-            - /usr/local/lib/python3.7/site-packages
-
-          key: v1-packages-{{ checksum "requirements.txt" }}
 
       - run:
           name: Run tests
