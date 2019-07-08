@@ -15,8 +15,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-
+            - v1-packages-{{ checksum "requirements.txt" }}
+            - v1-packages-
 
       - run:
           name: install dependencies
@@ -31,7 +31,7 @@ jobs:
             - /usr/local/bin
             - /usr/local/lib/python3.7/site-packages
 
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: v1-packages-{{ checksum "requirements.txt" }}
 
       - run:
           name: Run tests
