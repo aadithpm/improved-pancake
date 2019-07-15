@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
-from lists.models import Item, List
+from lists.models import List
 from lists.forms import ItemForm
 
 
