@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from unittest import skip
 
 from django.test import TestCase
 from django.utils.html import escape
