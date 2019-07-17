@@ -16,15 +16,17 @@
             <div class = "col-md-6 offset-md-3 jumbotron">
                 <div class = "text-center">
                     <h1>{% block header_text %}{% endblock %}</h1>
-                    <form method="POST" action="{% block form_action %}{% endblock %}">
+                    <form method="POST" action="{% block form_action %}{% endblock %}" novalidate>
                         {{ form.text }}
                         <input name="submit" id="submit_list_item" type="submit" class="btn btn-outline-dark" value=">">
                         {% csrf_token %}
-                        {% if error %}
                           <div class="form-group has-error">
-                            <span class="help-block">{{ error }}</span>
+                          {% if form.errors %}
+                            <div class="help-block">
+                              {{ form.text.errors.as_text }}
+                            </div>
+                          {% endif %}
                           </div>
-                        {% endif %}
                     </form>
                 </div>
             </div>
