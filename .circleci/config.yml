@@ -26,12 +26,11 @@ jobs:
             - python-dependencies-{{ checksum "requirements.txt" }}
             - npm-dependencies-{{ checksum "package.json" }}
       - run:
-          name: install dependencies
+          name: install python dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            npm install
       - save_cache:
           paths:
             - ./venv
@@ -40,6 +39,11 @@ jobs:
 
           key: python-dependencies-{{ checksum "requirements.txt" }}
           
+      - run:
+          name: install npm packages
+          command: |
+            npm install
+      - save_cache:
           paths:
             - /node_modules/
           
