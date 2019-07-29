@@ -9,14 +9,20 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
+  <form>
+    <input name="text" />
+    <div class="has-error">Error text</div>
+  </form>
+
+
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
   <script src="../../../node_modules/qunit/qunit/qunit.js"></script>
-
   <script>
-
-QUnit.test("smoke test", function (assert) {
-  assert.equal(1, 1, "Maths works!");
-});
-
+    QUnit.test("smoke test", function(assert){
+        assert.equal($('.has-error').is(':visible'), true);
+        $('.has-error').hide();
+        assert.equal($('.has-error').is(':visible'), false);
+    });
   </script>
 </body>
 </html>
