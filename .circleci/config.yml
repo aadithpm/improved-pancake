@@ -14,13 +14,12 @@ jobs:
     steps:
       - checkout
       - run:
-          sudo chown -R circleci:circleci reports
-      - run:
-          sudo chown -R circleci:circleci /usr/local/bin
-      - run:
-          sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
-      - run:
-          sudo npm install -g npm@latest
+          name: set up
+          command: |
+            sudo chown -R circleci:circleci reports
+            sudo chown -R circleci:circleci /usr/local/bin
+            sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+            sudo npm install -g npm@latest
       - restore_cache:
           keys:
             - python-dependencies-{{ checksum "requirements.txt" }}
