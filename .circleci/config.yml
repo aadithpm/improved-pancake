@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: set up
+          name: Set up
           command: |
             sudo chown -R circleci:circleci reports
             sudo chown -R circleci:circleci /usr/local/bin
@@ -25,12 +25,13 @@ jobs:
             - python-dependencies-{{ checksum "requirements.txt" }}
             - npm-dependencies-{{ checksum "package.json" }}
       - run:
-          name: install python dependencies
+          name: Install Python dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
+          name: Saving Python cache
           paths:
             - ./venv
             - /usr/local/bin
@@ -39,10 +40,11 @@ jobs:
           key: python-dependencies-{{ checksum "requirements.txt" }}
           
       - run:
-          name: install npm packages
+          name: Install npm packages
           command: |
             npm install
       - save_cache:
+          name: Saving npm cache
           paths:
             - /node_modules/
           
