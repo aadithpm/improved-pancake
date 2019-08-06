@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.3-browsers
+      - image: circleci/python:3.7.3-node-browsers
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
@@ -14,27 +14,41 @@ jobs:
     steps:
       - checkout
       - run:
-          sudo chown -R circleci:circleci /usr/local/bin
-      - run:
-          sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+          name: Set up
+          command: |
+            sudo chown -R circleci:circleci reports
+            sudo chown -R circleci:circleci /usr/local/bin
+            sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+            sudo npm install -g npm@latest
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-
+            - python-dependencies-{{ checksum "requirements.txt" }}
+            - npm-dependencies-{{ checksum "package.json" }}
       - run:
-          name: install dependencies
+          name: Install Python dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-
       - save_cache:
+          name: Saving Python cache
           paths:
             - ./venv
             - /usr/local/bin
             - /usr/local/lib/python3.7/site-packages
 
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: python-dependencies-{{ checksum "requirements.txt" }}
+          
+      - run:
+          name: Install npm packages
+          command: |
+            npm install
+      - save_cache:
+          name: Saving npm cache
+          paths:
+            - /node_modules/
+          
+          key: npm-dependencies-{{ checksum "package.json" }}
 
       - run:
           name: Run unit tests
@@ -47,6 +61,12 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py test functional_tests
+
+      - run:
+          name: Run linting
+          command: |
+            . venv/bin/activate
+            flake8 --config=tox.ini
 
       - store_test_results:
           path: reports/test_report.txt

@@ -17,3 +17,7 @@ div.has-error{
     font-family: 'Space Mono', monospace;
     font-size: 0.9em;
 }
+
+div.help-block{
+    margin-top: 5%;
+}
