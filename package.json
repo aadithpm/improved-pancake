@@ -4,7 +4,7 @@
   "description": "To-do list in Django",
   "main": "index.js",
   "dependencies": {
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "qunit": "^2.9.2"
   },
   "devDependencies": {},
